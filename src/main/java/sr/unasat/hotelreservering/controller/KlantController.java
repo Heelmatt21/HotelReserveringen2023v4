@@ -15,12 +15,12 @@ public class KlantController {
     private final KlantenService klantenService = new KlantenService();
 
 
-//    @Path("/list")
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public List<Klanten> findKlant() {
-//        return klantenService.findAll();
-//    }
+   /*@Path("/list")
+   @GET
+   @Produces(MediaType.APPLICATION_JSON)
+   public List<Klanten> findKlant() {
+        return klantenService.findAll();*/
+
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)

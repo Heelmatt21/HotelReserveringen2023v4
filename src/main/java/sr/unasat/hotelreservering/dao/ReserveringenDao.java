@@ -1,5 +1,6 @@
 package sr.unasat.hotelreservering.dao;
 
+import sr.unasat.hotelreservering.entities.Klanten;
 import sr.unasat.hotelreservering.entities.Reserveringen;
 
 import javax.persistence.EntityManager;
@@ -42,6 +43,15 @@ public class ReserveringenDao {
         entityManager.getTransaction().commit();
         return reserveringen;
     }
+    //find by reserverings_id
+    public Reserveringen findByReserveringId(Integer reservering_id) {
+        entityManager.getTransaction().begin();
+        String jpql4 = "select c from Reserveringen c where c.reservering_id = :reservering_id";
+        TypedQuery<Reserveringen> query = entityManager.createQuery(jpql4, Reserveringen.class);
+        Reserveringen reserveringen4 = query.setParameter("reservering_id", reservering_id).getSingleResult();
+        entityManager.getTransaction().commit();
+        return reserveringen4;
+    }
 
     public Reserveringen insert(Reserveringen reserveringen) {
         entityManager.getTransaction().begin();
@@ -61,10 +71,19 @@ public class ReserveringenDao {
         return rowsUpdated;
     }
 
-    public int delete(String reserveringsNummer) {
+    public int deletebyReserveringsNummer(String reserveringsNummer) {
         entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("delete from Reserveringen c where c.reserveringsnummer = :reserveringsnummer");
         query.setParameter("reserveringsnummer", reserveringsNummer);
+        int rowsDeleted = query.executeUpdate();
+        System.out.println("entities deleted: " + rowsDeleted);
+        entityManager.getTransaction().commit();
+        return rowsDeleted;
+    }
+    public int delete(int reservering_id) {
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("delete from Reserveringen c where c.reservering_id = :reservering_id");
+        query.setParameter("reservering_id", reservering_id);
         int rowsDeleted = query.executeUpdate();
         System.out.println("entities deleted: " + rowsDeleted);
         entityManager.getTransaction().commit();

@@ -1,6 +1,7 @@
-/*package sr.unasat.hotelreservering.controller;
+package sr.unasat.hotelreservering.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+/*import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;

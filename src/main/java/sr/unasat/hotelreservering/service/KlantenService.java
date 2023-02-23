@@ -6,6 +6,7 @@ import sr.unasat.hotelreservering.dao.KlantenDao;
 import sr.unasat.hotelreservering.entities.Klanten;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 public class KlantenService {
@@ -18,13 +19,13 @@ public class KlantenService {
     public KlantenService() {
         this.klantenDao = new KlantenDao(JPAConfiguration.getEntityManager());
     }
-    //    public MenuService(){
-//        if (menuList == null) {
-//            menuListId = 0;
-//            menuList = new ArrayList<>();
-//            menuList.add(new Menu(++menuListId));
-//        }
-//    }
+        /*public KlantenService(){
+        if (klantenList == null) {
+            klantenListId = 0;
+            klantenList = new ArrayList<>();
+            klantenList.add(new Klanten(++klantenListId));
+        }
+    }*/
 
 
     public List<Klanten> findAll(){ //get
