@@ -62,12 +62,15 @@ public class KlantController {
         return klantenService.updateKlanten(klant_id);
     }
 
+
 //    @Path("/updateMenu")
 //    @POST
 //    @Consumes(MediaType.APPLICATION_JSON)
 //    @Produces(MediaType.APPLICATION_JSON)
 //    public Menu getMenu(Menu menu){
 //        return menuService.updateMenu(menu);
+
 //
 //    }
+
 }

@@ -43,4 +43,6 @@ public class KlantenService {
     public void deleteKlanten(int klantenDelete){ //delete
         klantenDao.delete(klantenDelete);
     }
+
+
 }

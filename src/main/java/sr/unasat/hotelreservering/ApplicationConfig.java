@@ -14,6 +14,7 @@ import java.util.Map;
 public class ApplicationConfig extends Application {
     @Override
     public Map<String, Object> getProperties() {
+        //Map<String, Object> properties = new HashMap<String, Object>();
         Map<String, Object> properties = new HashMap<String, Object>();
         properties.put("jersey.config.server.provider.packages", "sr.unasat.hotelreservering.controller");
         JPAConfiguration.getEntityManager();

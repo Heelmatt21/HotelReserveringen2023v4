@@ -50,7 +50,7 @@ public class LocatieDao {
         return rowsUpdated;
     }
 
-    public int delete(Integer locatieId) {
+    public int delete(int locatieId) {
         entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("delete from Locatie c where c.locatie_id = :locatie_id");
         query.setParameter("locatie_id", locatieId);
