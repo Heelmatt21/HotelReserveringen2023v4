@@ -1,18 +1,17 @@
 package sr.unasat.hotelreservering.controller;
 
-
-import sr.unasat.hotelreservering.config.JPAConfiguration;
-import sr.unasat.hotelreservering.entities.Klanten;
-import sr.unasat.hotelreservering.service.KlantenService;
+import sr.unasat.hotelreservering.entities.Locatie;
+import sr.unasat.hotelreservering.entities.Reserveringen;
+import sr.unasat.hotelreservering.service.LocatieService;
+import sr.unasat.hotelreservering.service.ReserveringenService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/klant")
-public class KlantController {
-
-    private final KlantenService klantenService = new KlantenService();
+@Path("/locatie")
+public class LocatieController {
+    private final LocatieService locatieService = new LocatieService();
 
 
    /*@Path("/list")
@@ -24,17 +23,17 @@ public class KlantController {
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Klanten> findKlant(){
-        System.out.println(klantenService.findAll());
-        return klantenService.findAll();
+    public List<Locatie> findlocatie(){
+        System.out.println(locatieService.findAll());
+        return locatieService.findAll();
     }
 
     @Path("/add")
     @POST
-    //@Consumes(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void add(Klanten klanten){
-        klantenService.insertKlanten(klanten);
+    public void add(Locatie locatie){
+        locatieService.insertLocatie(locatie);
 //        System.out.println(menu);
     }
     //
@@ -50,18 +49,17 @@ public class KlantController {
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void remove(int klanten){
-        klantenService.deleteKlanten(klanten);
+    public void remove(int locatie){
+        locatieService.deleteLocatie(locatie);
     }
 
-    @Path("/getKlanten")
-    @POST
+    @Path("/getLocatie")
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Klanten getKlanten(int klant_id){
-        return klantenService.updateKlanten(klant_id);
+    public Locatie getLocatie(int locatie_id){
+        return locatieService.updateLocatie(locatie_id);
     }
-
 
 //    @Path("/updateMenu")
 //    @POST
@@ -69,8 +67,7 @@ public class KlantController {
 //    @Produces(MediaType.APPLICATION_JSON)
 //    public Menu getMenu(Menu menu){
 //        return menuService.updateMenu(menu);
-
 //
 //    }
-
 }
+

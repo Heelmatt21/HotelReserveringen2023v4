@@ -16,7 +16,7 @@ public class Reserveringen {
     @Column(name = "reserveringsnummer")
     private String reserveringsnummer;
     @Basic
-    @Column(name = "locatie_id",insertable = false, updatable = false)
+    @Column (name = "locatie_id",insertable = false, updatable = false)
     private int locatieId;
     @Basic
     @Column(name = "klant_id", insertable = false, updatable = false)
@@ -92,11 +92,21 @@ public class Reserveringen {
         this.werknemerId = werknemerId;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Reserveringen{" +
                 "reservering_id=" + reservering_id + '\'' +
                 ", reserveerdatum='" + reserveerDatum +
+                '}';
+    }*/
+    @Override
+    public String toString() {
+        return "Reserveringen{" +
+                "reservering_id=" + reservering_id +
+                ", reserveerdatum='" + reserveerDatum + '\'' +
+                ", reserveringsnummer='" + reserveringsnummer + '\'' +
+                ", locatie_id='" + locatieId + '\'' +
+                ", klant_id=" + klantId +
                 '}';
     }
 }

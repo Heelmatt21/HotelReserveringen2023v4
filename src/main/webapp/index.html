@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Api</title>
+
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Hotel Api</h1>
+
+<h2>Table Locatie</h2>
+<table id="myTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Locatie</th>
+        <th>Distrikt</th>
+    </tr>
+    </thead>
+    <tbody id="table-body">
+    </tbody>
+</table>
+
+<button type= "button" onclick="getLocatie()">Get Locatie </button>
+<script src="index.js" async></script>
+
+
+
+
+<div id="data"></div>
+
+<form id="form">
+    <label for="locatie">Locatie:</label>
+    <input type="text" id="locatie" name="locatie" required>
+    <label for="distrikt">Distrikt:</label>
+    <input type="text" id="distrikt" name="distrikt" required>
+    <button type="submit" id="submit-button">submit</button>
+</form>
+<script>
+    /*var tableBody = document.getElementById("table-body");
+
+    fetch("http://localhost:8080/HotelReserveringen2023v4_war/api/locatie/list")
+        .then(response => response.json())
+        .then(data => {
+            for (var i = 0; i < data.length; i++) {
+                var row = tableBody.insertRow(-1);
+                var idCell = row.insertCell(0);
+                var locatieCell = row.insertCell(1);
+                var distriktCell = row.insertCell(2);
+                idCell.innerHTML = data[i].locatie_id;
+                locatieCell.innerHTML = data[i].locatienaam;
+                distriktCell.innerHTML = data[i].distrikt;
+            }
+        })
+        .catch(error => console.error(error));*/
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+        fetch('http://localhost:8081/HotelReserveringen2023v4_war/api/locatie/list')
+            .then(response => response.json())
+            .then(data => {
+                displayTable(data);
+            })
+            .catch(error => console.error(error));
+    });
+
+
+
+
+
+
+
+// Create data
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        const locatienaam = locatieInput.value;
+        const distrikt = distriktInput.value;
+
+        fetch('http://localhost:8080/HotelReserveringen2023v4_war/api/locatie/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ locatienaam, distrikt })
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Use the data here
+                dataElement.innerHTML = JSON.stringify(data);
+                locatieInput.value = '';
+                distriktInput.value = '';
+            })
+            .catch(error => {
+                // Handle errors here
+                console.error(error);
+            });
+    });
+
+    // Update data
+    submitButton.addEventListener('click', () => {
+        const locatie = locatieInput.value;
+        const distrikt = distriktInput.value;
+
+        fetch('http://localhost:8080/HotelReserveringen2023v4_war/api/locatie/getLocatie', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ locatie, distrikt })
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Use the data here
+                dataElement.innerHTML = JSON.stringify(data);
+                locatieInput.value = '';
+                distriktInput.value = '';
+            })
+            .catch(error => {
+                // Handle errors here
+                console.error(error);
+            });
+    });
+
+    // Delete data
+    submitButton.addEventListener('click', () => {
+        fetch('http://localhost:8080/HotelReserveringen2023v4_war/api/locatie/remove', {
+            method: 'DELETE'
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Use the data here
+                dataElement.innerHTML = JSON.stringify(data);
+            })
+            .catch(error => {
+                // Handle errors here
+                console.error(error);
+            });
+    });
+</script>
+</body>
+</html>
+
+

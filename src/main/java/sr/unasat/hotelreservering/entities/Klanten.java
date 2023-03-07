@@ -32,10 +32,10 @@ public class Klanten {
     private int telefoonnummer;
     @Column
     private String klantnummer;
-    @OneToMany(mappedBy = "klanten",cascade = CascadeType.REMOVE)
+    //@OneToMany(mappedBy = "klanten",cascade = CascadeType.REMOVE)
     //@OneToMany(cascade = CascadeType.PERSIST)
-    @Column
-    private Set<Betalingen> betalingens;
+    //@Column
+    //private Set<Betalingen> betalingens;
 
     public int getKlant_id() {
         return klant_id;
@@ -101,13 +101,13 @@ public class Klanten {
         this.klantnummer = klantnummer;
     }
 
-    public Set<Betalingen> getBetalingens() {
+    /*public Set<Betalingen> getBetalingens() {
         return betalingens;
     }
 
     public void setBetalingens(Set<Betalingen> betalingens) {
         this.betalingens = betalingens;
-    }
+    }*/
     @Override
     public String toString() {
         return "Klanten{" +

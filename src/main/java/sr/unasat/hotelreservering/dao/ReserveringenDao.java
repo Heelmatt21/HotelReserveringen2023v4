@@ -7,6 +7,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReserveringenDao {
@@ -24,7 +28,44 @@ public class ReserveringenDao {
         entityManager.getTransaction().commit();
         return rederveringenList;
     }
-    //find by reserveringId
+    public List<Reserveringen> retrieveReserveringenByKlantId() {
+        entityManager.getTransaction().begin();
+        String jpql = "select o.reservering_id, o.reserveerDatum, o.reserveringsnummer, c.familienaam, c.voornaam from Reserveringen o inner join Klanten c on o.klantId = c.klant_id";
+        TypedQuery<Reserveringen> query = entityManager.createQuery(jpql, Reserveringen.class);
+        List<Reserveringen> rederveringenListByKlantId = query.getResultList();
+        entityManager.getTransaction().commit();
+        return rederveringenListByKlantId;
+    }
+    /*public List<Reserveringen> retrieveReserveringenByKlantId2() throws SQLException {
+        List<Reserveringen> orders = new ArrayList<>();
+
+        String sql = "SELECT o.reservering_id, o.reserveer_datum, o.reserveringsnummer, c.familienaam, c.voornaam " +
+                "FROM reserveringen o " +
+                "INNER JOIN klanten c " +
+                "ON o.klant_id = c.klant_id";
+
+        try (Statement stmt = conn.createStatemen();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                int reserveringId = rs.getInt("reservering_id");
+                Date reserveerDate = rs.getDate("reserveer_datum");
+                String reserveerNummer = rs.getString("reserveernummer");
+                //int klantId = rs.getInt("klant_id");
+                String klantFamilienaam = rs.getString("familienaam");
+                String klantVoornaam = rs.getString("voornaam");
+
+                Reserveringen reserveringen = new Reserveringen(reserveringId, reserveerDate, reserveerNummer, new Klanten(klantFamilienaam, klantVoornaam));
+                reserveringen.add(reserveringen);
+            }
+        }
+
+        return orders;
+    }*/
+
+
+
+
+//find by reserveringId
     /*public Reserveringen findByReserveringId(Integer resrveringId) {
         entityManager.getTransaction().begin();
         String jpql = "select c from Reserveringen c  where c.reservering_id = :reservering_id";
