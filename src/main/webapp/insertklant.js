@@ -26,9 +26,10 @@ function insertklant(){
         land: document.getElementById('land').value,
         telefoonnummer: document.getElementById('telefoonnummer').value,
         klantnummer: document.getElementById('klantnummer').value
+    }
 
 
-    };
+
 
     // xhttp.onreadystatechange = function () {
     //     if (this.readyState === 4 && this.status === 200) {
@@ -46,3 +47,5 @@ function insertklant(){
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(klanten));
 }
+
+

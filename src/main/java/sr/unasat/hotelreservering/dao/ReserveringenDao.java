@@ -6,12 +6,11 @@ import sr.unasat.hotelreservering.entities.Reserveringen;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.sql.DriverManager.getConnection;
 
 public class ReserveringenDao {
     private EntityManager entityManager;
@@ -23,19 +22,20 @@ public class ReserveringenDao {
     public List<Reserveringen> retrieveReserveringenList() {
         entityManager.getTransaction().begin();
         String jpql = "select c from Reserveringen c";
+        //String jpql = "select c, DATE_FORMAT(reserveerDatum, '%m/%d/%Y') AS formatted_date from Reserveringen c";
         TypedQuery<Reserveringen> query = entityManager.createQuery(jpql, Reserveringen.class);
         List<Reserveringen> rederveringenList = query.getResultList();
         entityManager.getTransaction().commit();
         return rederveringenList;
     }
-    public List<Reserveringen> retrieveReserveringenByKlantId() {
+    /*public List<Reserveringen> retrieveReserveringenByKlantId() {
         entityManager.getTransaction().begin();
         String jpql = "select o.reservering_id, o.reserveerDatum, o.reserveringsnummer, c.familienaam, c.voornaam from Reserveringen o inner join Klanten c on o.klantId = c.klant_id";
         TypedQuery<Reserveringen> query = entityManager.createQuery(jpql, Reserveringen.class);
         List<Reserveringen> rederveringenListByKlantId = query.getResultList();
         entityManager.getTransaction().commit();
         return rederveringenListByKlantId;
-    }
+    }*/
     /*public List<Reserveringen> retrieveReserveringenByKlantId2() throws SQLException {
         List<Reserveringen> orders = new ArrayList<>();
 
@@ -61,6 +61,28 @@ public class ReserveringenDao {
 
         return orders;
     }*/
+    public List<Reserveringen> reserveringenKlantenList() {
+        entityManager.getTransaction().begin();
+        String jpql = "select c from Reserveringen c inner join Klanten o on (c.klantId = o.klant_id)";
+        //String jpql = "select c, DATE_FORMAT(reserveerDatum, '%m/%d/%Y') AS formatted_date from Reserveringen c";
+
+        TypedQuery<Reserveringen> query = entityManager.createQuery(jpql, Reserveringen.class);
+        List<Reserveringen> rederveringenList = query.getResultList();
+        entityManager.getTransaction().commit();
+        return rederveringenList;
+    }
+
+//    public List<Reserveringen> reserveringenKlantenListNew() {
+//        entityManager.getTransaction().begin();
+//        String jpql = "select Reserveringen.reservering_id, Reserveringen.reserveerDatum, Reserveringen.reserveringsnummer, Klanten.familienaam, Klanten.voornaam,Locatie.locatienaam from Reserveringen c inner join Klanten o on (c.klantId = o.klant_id) inner join Locatie a on (c.locatieId = a.locatie_id)";
+//        //String jpql = "select c, DATE_FORMAT(reserveerDatum, '%m/%d/%Y') AS formatted_date from Reserveringen c";
+//        TypedQuery<Reserveringen> query = entityManager.createQuery(jpql, Reserveringen.class);
+//        List<Reserveringen> rederveringenList = query.getResultList();
+//        entityManager.getTransaction().commit();
+//        return rederveringenList;
+//    }
+
+
 
 
 
@@ -131,7 +153,7 @@ public class ReserveringenDao {
         return rowsDeleted;
     }
     //Rapportage
-    public List<Reserveringen>getReserveringRapportage(Date startDate, java.util.Date endDate){
+    /*public List<Reserveringen>getReserveringRapportage(Date startDate, java.util.Date endDate){
         entityManager.getTransaction().begin();
         String jpql = "select c from Reserveringen c where c.reserveerDatum between :startDate and :endDate";
         TypedQuery<Reserveringen> query = entityManager.createQuery(jpql, Reserveringen.class);
@@ -144,12 +166,12 @@ public class ReserveringenDao {
         System.out.println();
         System.out.println("=======================================================================================================================");
         for (Reserveringen reserveringen: reserveringenList){
-            System.out.format("%5s %20s %20s %20s %20s %20s", reserveringen.getReservering_id(),reserveringen.getReserveerDatum(),reserveringen.getReserveringsnummer(),reserveringen.getLocatieId(),reserveringen.getKlantId(),reserveringen.getWerknemerId());
+            System.out.format("%5s %20s %20s %20s %20s %20s", reserveringen.getReservering_id(),reserveringen.getReserveerDatum(),reserveringen.getReserveringsnummer(),reserveringen.getLocatieId(),reserveringen.getKlantId(),reserveringen.getwerknemerId());
             System.out.println();
         }
         entityManager.getTransaction().commit();
         System.out.println("======================================================================================================================");
         return reserveringenList;
-    }
+    }*/
 
 }

@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Klanten</title>
+  <title>Klanten - SMR Hotel</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -62,10 +62,11 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="index.html">Reserveringen</a></li>
           <li><a class="active" href="klanten.html">Klanten</a></li>
           <li><a href="insertklant.html">Klant Toevoegen</a></li>
+          <li><a href="insertreservering.html">Boek Reservering</a></li>
+          <li><a href="about.html">About</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -83,7 +84,6 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a href="contact.html">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -128,6 +128,7 @@
         </tbody>
       </table>
 
+
       <script>
         document.addEventListener("DOMContentLoaded", function(event) {
           fetch('http://localhost:8081/HotelReserveringen2023v4_war/api/klant/list')
@@ -139,6 +140,18 @@
         });
       </script>
       <script src="klanten.js" async></script>
+<!--    <div>-->
+<!--      <h1>Delete Klant</h1>-->
+<!--      <form id="delete-form">-->
+<!--        <label for="klant_id">ID:</label>-->
+<!--        <input type="number" id="klant_id" name="klant_id">-->
+<!--        <button type="submit" onclick="deleteKlant()">Delete</button>-->
+<!--      </form>-->
+
+<!--      <div id="result"></div>-->
+
+<!--      <script src="script.js"></script>-->
+<!--    </div>-->
 
 
     <!--</section> --> <!-- End Event List Section -->

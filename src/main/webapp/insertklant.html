@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Gallery - MeFamily Bootstrap Template</title>
+  <title>Klant Toevoegen - SMR Hotel</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -30,6 +30,7 @@
 
   </script>
 
+
   <!-- =======================================================
   * Template Name: MeFamily - v4.10.0
   * Template URL: https://bootstrapmade.com/family-multipurpose-html-bootstrap-template-free/
@@ -45,16 +46,17 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="index.html">Me &amp; Family</a></h1>
+      <h1 class="logo"><a href="index.html">SMR Hotel</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="index.html">Reserveringen</a></li>
           <li><a href="klanten.html">Klanten</a></li>
           <li><a class="active" href="insertklant.html">Klant Toevoegen</a></li>
+          <li><a href="insertreservering.html">Boek Reservering</a></li>
+          <li><a href="about.html">About</a></li>
           <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -72,7 +74,6 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
-          <li><a href="contact.html">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -151,15 +152,15 @@
 <!--    </div>-->
     <div>
       <h2>Klanten Toevoegen&nbsp;</h2>
-      <input type="text" id="familienaam" class="search-field form-control" placeholder="Vul Familienaam in" style="width: 500px; height: 40px; display: block; margin: auto;">
-      <input type="text" id="voornaam" class="search-field form-control" placeholder="Vul Voornaam in" style="width: 500px; height: 40px; display: block; margin: auto;">
-      <input type="text" id="adres" class="search-field form-control" placeholder="Vul Adres in" style="width: 500px; height: 40px; display: block; margin: auto;">
-      <input type="text" id="distrikt" class="search-field form-control" placeholder="Vul Distrikt in" style="width: 500px; height: 40px; display: block; margin: auto;">
-      <input type="text" id="land" class="search-field form-control" placeholder="Vul Land in" style="width: 500px; height: 40px; display: block; margin: auto;">
-      <input type="text" id="telefoonnummer" class="search-field form-control" placeholder="Vul Telefoonnummer in" style="width: 500px; height: 40px; display: block; margin: auto;">
-      <input type="text" id="klantnummer" class="search-field form-control" placeholder="Vul Klantnummer in" style="width: 500px; height: 40px; display: block; margin: auto;">
+      <input type="text" id="familienaam" class="search-field form-control" placeholder="Familienaam" style="width: 500px; height: 40px; display: block; margin: auto;">
+      <input type="text" id="voornaam" class="search-field form-control" placeholder="Voornaam" style="width: 500px; height: 40px; display: block; margin: auto;">
+      <input type="text" id="adres" class="search-field form-control" placeholder="Adres" style="width: 500px; height: 40px; display: block; margin: auto;">
+      <input type="text" id="distrikt" class="search-field form-control" placeholder="Distrikt" style="width: 500px; height: 40px; display: block; margin: auto;">
+      <input type="text" id="land" class="search-field form-control" placeholder="Land" style="width: 500px; height: 40px; display: block; margin: auto;">
+      <input type="text" id="telefoonnummer" class="search-field form-control" placeholder="Telefoonnummer" style="width: 500px; height: 40px; display: block; margin: auto;">
+      <input type="text" id="klantnummer" class="search-field form-control" placeholder="Klantnummer" style="width: 500px; height: 40px; display: block; margin: auto;">
 
-      <button class="button" onclick="insertklant()" style="width: 500px; height: 40px; display: block; margin: auto;">Klant Toevoegen
+      <button class="button" type="submit" onclick="insertklant()" href="klanten.html"  style="width: 500px; height: 40px; display: block; margin: auto;">Klant Toevoegen
               <i class="zmdi zmdi-search">
               </i>
       </button>
@@ -174,8 +175,8 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="container">
-      <h3>MeFamily</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <h3>SMR Hotel</h3>
+      <p>Comfortable in everyway!</p>
       <div class="social-links">
         <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -184,14 +185,14 @@
         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
       <div class="copyright">
-        &copy; Copyright <strong><span>MeFamily</span></strong>. All Rights Reserved
+        &copy; Copyright 2023 <strong><span>SMR Hotel</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/family-multipurpose-html-bootstrap-template-free/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="https://www.facebook.com/Heelmatt">Matthew Sahit</a>
       </div>
     </div>
   </footer><!-- End Footer -->

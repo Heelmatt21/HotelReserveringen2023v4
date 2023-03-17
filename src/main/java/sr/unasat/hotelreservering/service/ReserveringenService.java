@@ -31,9 +31,16 @@ public class ReserveringenService {
         return reserveringenDao.retrieveReserveringenList();
     }//get
 
-    public List<Reserveringen> findAllByKlantId(){
-        return reserveringenDao.retrieveReserveringenByKlantId();
-    }
+//    public List<Reserveringen> findAllByKlantId(){
+//        return reserveringenDao.retrieveReserveringenByKlantId();
+//    }
+    public List<Reserveringen> findReserveringKlanten(){ //get
+    return reserveringenDao.reserveringenKlantenList();
+}
+
+//    public List<Reserveringen> findReserveringKlantenNew(){ //get
+//    return reserveringenDao.reserveringenKlantenListNew();
+//}
 
     public void insertReserveringen(Reserveringen menuObj){ //post
         reserveringenDao.insert(menuObj);

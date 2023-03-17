@@ -1,8 +1,15 @@
 package sr.unasat.hotelreservering.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 public class Reserveringen {
@@ -12,6 +19,8 @@ public class Reserveringen {
     private int reservering_id;
     @Basic
     @Column(name = "reserveer_datum")
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
+    //@JsonDeserialize(using = LocalDateDeserializer.class)@JsonSerialize(using = LocalDateSerializer.class)@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date reserveerDatum;
     @Column(name = "reserveringsnummer")
     private String reserveringsnummer;
@@ -21,28 +30,30 @@ public class Reserveringen {
     @Basic
     @Column(name = "klant_id", insertable = false, updatable = false)
     private int klantId;
-    @Basic
-    @Column(name = "werknemer_id", insertable = false, updatable = false)
-    private int werknemerId;
-    @OneToMany(mappedBy = "reserveringenByReserveringId", cascade = CascadeType.REMOVE)
-    private Collection<Betalingen> betalingensByReserveringId;
+
+
+//    @Basic
+//    @Column(name = "werknemer_id", insertable = false, updatable = false)
+//    private int werknemerId;
+//    @OneToMany(mappedBy = "reserveringenByReserveringId", cascade = CascadeType.REMOVE)
+//    private Collection<Betalingen> betalingensByReserveringId;
     @ManyToOne
     @JoinColumn(name = "locatie_id", referencedColumnName = "locatie_id", nullable = false)
     private Locatie locatieByLocatieId;
     @ManyToOne
     @JoinColumn(name = "klant_id", referencedColumnName = "klant_id", nullable = false)
-    private Klanten klantenByKlantId;
-    @ManyToOne
-    @JoinColumn(name = "werknemer_id", referencedColumnName = "werknemer_id", nullable = false)
-    private Werknemers werknemersByWerknemerId;
+    private Klanten klanten;
+//    @ManyToOne
+//    @JoinColumn(name = "werknemer_id", referencedColumnName = "werknemer_id", nullable = false)
+//    private Werknemers werknemersByWerknemerId;
 
-    public Werknemers getWerknemersByWerknemerId() {
-        return werknemersByWerknemerId;
-    }
-
-    public void setWerknemersByWerknemerId(Werknemers werknemersByWerknemerId) {
-        this.werknemersByWerknemerId = werknemersByWerknemerId;
-    }
+//    public Werknemers getWerknemersByWerknemerId() {
+//        return werknemersByWerknemerId;
+//    }
+//
+//    public void setWerknemersByWerknemerId(Werknemers werknemersByWerknemerId) {
+//        this.werknemersByWerknemerId = werknemersByWerknemerId;
+//    }
 
     public int getReservering_id() {
         return reservering_id;
@@ -84,29 +95,37 @@ public class Reserveringen {
         this.klantId = klantId;
     }
 
-    public int getWerknemerId() {
-        return werknemerId;
-    }
 
-    public void setWerknemerId(int werknemerId) {
-        this.werknemerId = werknemerId;
-    }
 
-    /*@Override
-    public String toString() {
-        return "Reserveringen{" +
-                "reservering_id=" + reservering_id + '\'' +
-                ", reserveerdatum='" + reserveerDatum +
-                '}';
-    }*/
+//    public int getWerknemerId() {
+//        return werknemerId;
+//    }
+//
+//    public void setWerknemerId(int werknemerId) {
+//        this.werknemerId = werknemerId;
+//    }
+
     @Override
     public String toString() {
         return "Reserveringen{" +
-                "reservering_id=" + reservering_id +
-                ", reserveerdatum='" + reserveerDatum + '\'' +
-                ", reserveringsnummer='" + reserveringsnummer + '\'' +
-                ", locatie_id='" + locatieId + '\'' +
-                ", klant_id=" + klantId +
+                "reservering_id=" + reservering_id + '\'' +
+                ", reserveerDatum='" + reserveerDatum + '\'' +
+                ", reserveerNummer='" + reserveringsnummer + '\'' +
+                ", locatieId='" + locatieId +'\'' +
+                ", klantId='" + klantId + '\'' +
+                ", familienaam='" + klanten.getFamilienaam() + '\'' +
+                ", voornaam='" + klanten.getVoornaam() + '\'' +
+                ", locatieNaam='" + locatieByLocatieId.getLocatienaam() +
                 '}';
     }
+//    @Override
+//    public String toString() {
+//        return "Reserveringen{" +
+//                "reservering_id=" + reservering_id +
+//                ", reserveerdatum='" + reserveerDatum + '\'' +
+//                ", reserveringsnummer='" + reserveringsnummer + '\'' +
+//                ", locatie_id='" + locatieId + '\'' +
+//                ", klant_id=" + klantId +
+//                '}';
+//    }
 }

@@ -7,6 +7,7 @@ import sr.unasat.hotelreservering.service.KlantenService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/klant")
@@ -46,13 +47,31 @@ public class KlantController {
 //        menuService.updateMenu(menu);
 //    }
 //
-    @Path("/remove")
+//    @Path("/remove")
+//    @DELETE
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public void remove(int klanten){
+//        klantenService.deleteKlanten(klanten);
+//    }
+
+
+
     @DELETE
-    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void remove(int klanten){
-        klantenService.deleteKlanten(klanten);
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/remove/{klant_id}")
+    public Response getAll(@PathParam("klant_id") int klant_id){
+        klantenService.deleteKlanten(klant_id);
+        if(findKlant().isEmpty()){
+            return Response.status(200)
+                        .entity("Klant is not deleted").build();
+        }else{
+            return Response.status(200)
+                    .entity("Klant is deleted").build();
+        }
     }
+
 
     @Path("/getKlanten")
     @POST

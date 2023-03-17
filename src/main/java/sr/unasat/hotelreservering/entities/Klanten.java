@@ -1,8 +1,11 @@
 package sr.unasat.hotelreservering.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -36,6 +39,9 @@ public class Klanten {
     //@OneToMany(cascade = CascadeType.PERSIST)
     //@Column
     //private Set<Betalingen> betalingens;
+    @OneToMany(mappedBy = "klanten",cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Reserveringen> reserveringen = new ArrayList<>();
 
     public int getKlant_id() {
         return klant_id;

@@ -27,17 +27,31 @@ public class ReserveringController {
         System.out.println(reserveringenService.findAll());
         return reserveringenService.findAll();
     }
-    @Path("/listbyklant")
+    @Path("/listklant")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Reserveringen> findreserveringbyklantid(){
-        System.out.println(reserveringenService.findAllByKlantId());
-        return reserveringenService.findAllByKlantId();
+    public List<Reserveringen> findReserveringKlanten(){
+        System.out.println(reserveringenService.findReserveringKlanten());
+        return reserveringenService.findReserveringKlanten();
     }
+//    @Path("/listklantnew")
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public List<Reserveringen> findReserveringKlantenNew(){
+//        System.out.println(reserveringenService.findReserveringKlantenNew());
+//        return reserveringenService.findReserveringKlantenNew();
+//    }
+//    @Path("/listbyklant")
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public List<Reserveringen> findreserveringbyklantid(){
+//        System.out.println(reserveringenService.findAllByKlantId());
+//        return reserveringenService.findAllByKlantId();
+//    }
 
     @Path("/add")
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    //@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public void add(Reserveringen reserveringen){
         reserveringenService.insertReserveringen(reserveringen);

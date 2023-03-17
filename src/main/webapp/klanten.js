@@ -38,3 +38,27 @@ function displayKlantenTable(apiKlantData) {
         })
         .catch(error => console.error(error));
 }
+// function deleteKlant() {
+//     const form = document.getElementById('delete-form');
+//     const result = document.getElementById('result');
+//
+//     form.addEventListener('submit', (event) => {
+//         event.preventDefault();
+//
+//         const id = document.getElementById('klant_id').value;
+//
+//         fetch(`/api/klant/remove/${id}`, {
+//             method: 'DELETE'
+//         })
+//             .then((response) => {
+//                 if (response.ok) {
+//                     result.textContent = 'Resource deleted successfully.';
+//                 } else {
+//                     result.textContent = 'Error deleting resource.';
+//                 }
+//             })
+//             .catch((error) => {
+//                 result.textContent = 'Error deleting resource.';
+//             });
+//     });
+// }
