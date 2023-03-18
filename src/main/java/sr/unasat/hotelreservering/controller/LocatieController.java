@@ -30,7 +30,7 @@ public class LocatieController {
 
     @Path("/add")
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
+    //@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public void add(Locatie locatie){
         locatieService.insertLocatie(locatie);

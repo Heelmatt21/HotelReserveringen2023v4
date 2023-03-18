@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
+import com.fasterxml.jackson.databind.ser.std.DateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
@@ -22,10 +23,10 @@ public class Reserveringen {
     @Basic
     @Column(name = "reserveer_datum")
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
+    @JsonSerialize(using = DateSerializer.class)
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDate reserveerDatum;
+    private Date reserveerDatum;
     @Column(name = "reserveringsnummer")
     private String reserveringsnummer;
     @Basic
@@ -42,10 +43,10 @@ public class Reserveringen {
 //    @OneToMany(mappedBy = "reserveringenByReserveringId", cascade = CascadeType.REMOVE)
 //    private Collection<Betalingen> betalingensByReserveringId;
     @ManyToOne
-    @JoinColumn(name = "locatie_id", referencedColumnName = "locatie_id", nullable = false)
+    @JoinColumn(name = "locatie_id", referencedColumnName = "locatie_id", nullable = true)
     private Locatie locatieByLocatieId;
     @ManyToOne
-    @JoinColumn(name = "klant_id", referencedColumnName = "klant_id", nullable = false)
+    @JoinColumn(name = "klant_id", referencedColumnName = "klant_id", nullable = true)
     private Klanten klanten;
 //    @ManyToOne
 //    @JoinColumn(name = "werknemer_id", referencedColumnName = "werknemer_id", nullable = false)
@@ -67,11 +68,11 @@ public class Reserveringen {
         this.reservering_id = reservering_id;
     }
 
-    public LocalDate getReserveerDatum() {
+    public Date getReserveerDatum() {
         return reserveerDatum;
     }
 
-    public void setReserveerDatum(LocalDate reserveerDatum) {
+    public void setReserveerDatum(Date reserveerDatum) {
         this.reserveerDatum = reserveerDatum;
     }
 
@@ -117,9 +118,9 @@ public class Reserveringen {
                 ", reserveerNummer='" + reserveringsnummer + '\'' +
                 ", locatieId='" + locatieId +'\'' +
                 ", klantId='" + klantId + '\'' +
-                ", familienaam='" + klanten.getFamilienaam() + '\'' +
-                ", voornaam='" + klanten.getVoornaam() + '\'' +
-                ", locatieNaam='" + locatieByLocatieId.getLocatienaam() +
+//                ", familienaam='" + klanten.getFamilienaam() + '\'' +
+//                ", voornaam='" + klanten.getVoornaam() + '\'' +
+//                ", locatieNaam='" + locatieByLocatieId.getLocatienaam() +
                 '}';
     }
 //    @Override
