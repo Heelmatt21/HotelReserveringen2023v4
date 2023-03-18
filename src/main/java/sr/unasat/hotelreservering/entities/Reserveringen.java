@@ -3,11 +3,13 @@ package sr.unasat.hotelreservering.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Set;
 
@@ -20,8 +22,10 @@ public class Reserveringen {
     @Basic
     @Column(name = "reserveer_datum")
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
-    //@JsonDeserialize(using = LocalDateDeserializer.class)@JsonSerialize(using = LocalDateSerializer.class)@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date reserveerDatum;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate reserveerDatum;
     @Column(name = "reserveringsnummer")
     private String reserveringsnummer;
     @Basic
@@ -63,11 +67,11 @@ public class Reserveringen {
         this.reservering_id = reservering_id;
     }
 
-    public Date getReserveerDatum() {
+    public LocalDate getReserveerDatum() {
         return reserveerDatum;
     }
 
-    public void setReserveerDatum(Date reserveerDatum) {
+    public void setReserveerDatum(LocalDate reserveerDatum) {
         this.reserveerDatum = reserveerDatum;
     }
 

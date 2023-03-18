@@ -25,7 +25,7 @@ public class KlantController {
     @Path("/list")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Klanten> findKlant(){
+    public List<Klanten> findKlant() {
         System.out.println(klantenService.findAll());
         return klantenService.findAll();
     }
@@ -34,7 +34,7 @@ public class KlantController {
     @POST
     //@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public void add(Klanten klanten){
+    public void add(Klanten klanten) {
         klantenService.insertKlanten(klanten);
 //        System.out.println(menu);
     }
@@ -56,30 +56,70 @@ public class KlantController {
 //    }
 
 
-
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/remove/{klant_id}")
-    public Response getAll(@PathParam("klant_id") int klant_id){
+    public Response getAll(@PathParam("klant_id") int klant_id) {
         klantenService.deleteKlanten(klant_id);
-        if(findKlant().isEmpty()){
+        if (findKlant().isEmpty()) {
             return Response.status(200)
-                        .entity("Klant is not deleted").build();
-        }else{
+                    .entity("Klant is not deleted").build();
+        } else {
             return Response.status(200)
                     .entity("Klant is deleted").build();
         }
     }
 
 
-    @Path("/getKlanten")
-    @POST
+//    @Path("/getKlanten")
+//    @POST
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Klanten getKlanten(int klant_id) {
+//        return klantenService.updateKlanten(klant_id);
+//    }
+
+    //    @PUT
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Path("/updateKlant/{klant_id}/{adres}")
+//    public Response getAllKlanten(@PathParam("klant_id") int klant_id) {
+//        klantenService.updateKlanten1(klant_id);
+//        if (findKlant().isEmpty()) {
+//            return Response.status(200)
+//                    .entity("Klant is not updated").build();
+//        } else {
+//            return Response.status(200)
+//                    .entity("Klant is updated").build();
+//        }
+//    }
+//}
+    @Path("/updateKlant/{klant_id}")
+    @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Klanten getKlanten(int klant_id){
-        return klantenService.updateKlanten(klant_id);
+    public Response updateKlant(@PathParam("klant_id")int klant_id, Klanten updatedKlant) {
+        updatedKlant.setKlant_id(klant_id);
+        Klanten klanten = klantenService.updateKlant(updatedKlant);
+        if (klanten == null){
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }else {
+            return Response.ok(klanten).build();
+        }
     }
+
+    @Path("/getKlant/{klant_id}")
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Klanten getKlant(@PathParam("klant_id")int klant_id){
+        return klantenService.updateKlantInfo(klant_id);
+    }
+    }
+
+
+
 
 
 //    @Path("/updateMenu")
@@ -88,8 +128,10 @@ public class KlantController {
 //    @Produces(MediaType.APPLICATION_JSON)
 //    public Menu getMenu(Menu menu){
 //        return menuService.updateMenu(menu);
-
+//
 //
 //    }
+//
+//}
 
-}
+

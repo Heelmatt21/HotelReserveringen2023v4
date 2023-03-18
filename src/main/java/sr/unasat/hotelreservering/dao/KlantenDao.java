@@ -89,7 +89,7 @@ public class KlantenDao {
         return klanten;
     }
 
-    public int updateKlanten(Klanten klanten) {
+    public int updateKlanten1(Klanten klanten) {
         entityManager.getTransaction().begin();
         Query query = entityManager.createQuery("UPDATE Klanten c SET c.adres = :adres where c.familienaam= :familienaam and c.telefoonnummer= :telefoonnummer");
         query.setParameter("familienaam", klanten.getFamilienaam());
@@ -99,6 +99,23 @@ public class KlantenDao {
         System.out.println("entities Updated: " + rowsUpdated);
         entityManager.getTransaction().commit();
         return rowsUpdated;
+    }
+//    public int updateKlanten2(Klanten klanten) {
+//        entityManager.getTransaction().begin();
+//        Query query = entityManager.createQuery("UPDATE Klanten c SET c.adres = :adres where c.klant_id= :klant_id");
+//        query.setParameter("klant_id", klanten.getKlant_id());
+//        query.setParameter("adres", klanten.getAdres());
+//        int rowsUpdated = query.executeUpdate();
+//        System.out.println("entities Updated: " + rowsUpdated);
+//        entityManager.getTransaction().commit();
+//        return rowsUpdated;
+//    }
+    public Klanten updateKlanten(Klanten klanten){
+        entityManager.getTransaction().begin();
+        entityManager.merge(klanten);
+        entityManager.getTransaction().commit();
+
+        return klanten;
     }
 
     /*public int delete(String klantnummer) {
